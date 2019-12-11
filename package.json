@@ -1,0 +1,40 @@
+{
+  "name": "yart",
+  "version": "0.0.0",
+  "description": "YART",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/ -d lib/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StatelessCat/YART-YetAnotherRDFTriplestore.git"
+  },
+  "keywords": [
+    "RDF",
+    "TRIPLESTORE"
+  ],
+  "author": "CAZENAVE-LEVEQUE Raphael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StatelessCat/YART-YetAnotherRDFTriplestore/issues"
+  },
+  "homepage": "https://github.com/StatelessCat/YART-YetAnotherRDFTriplestore#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "flow-typed": "^2.6.2",
+    "underscore": "^1.9.1",
+    "underscore.deepclone": "^0.1.3"
+  },
+  "engines": {
+    "node": ">=13.3.0",
+    "npm": ">=6.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-flow": "^7.7.4",
+    "flow-bin": "^0.113.0"
+  }
+}

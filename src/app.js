@@ -1,32 +1,25 @@
 // @flow
 
-const express = require('express')
-const app = express()
-const yart = require('./lib')
 
-app.get('/', function (req, res) {
-    res.send('Hello World!')
-})
+// $FlowFixMe
+const express = require('express');
+const Yart = require('./lib');
 
-app.listen(3000, function () {
-    // TESTING
-    const triple = {subject: "http://ex.co/Socrates", predicate: "http://ex.co/Is", object: "http://ex.co/Human",}
-    yart.insert(triple)
-    yart.insert({subject: "http://ex.co/Human", predicate: "http://ex.co/Is", object: "http://ex.co/Mortal",})
-    yart.insert({subject: "http://ex.co/Socrates", predicate: "http://ex.co/Is", object: "http://ex.co/Mortal",})
+const app = express();
 
-    // WORKER
-    // $FlowFixMe
-    const { Worker, isMainThread, parentPort, workerData } = require('worker_threads')
-    // $FlowFixMe
-    const worker = new Worker("./lib/worker.js")
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
-    worker.once('message', (message) => {
-        console.log(message)  // Prints 'Hello, world!'.
-    })
-    worker.postMessage({
-        messageType: "insertTriple",
-        triple: triple
-    })
-    // END
-})
+app.listen(3000, () => {
+  // TESTING
+  const triple1 = { subject: 'http://ex.co/Socrates', predicate: 'http://ex.co/Is', object: 'http://ex.co/Human' };
+  const triple2 = { subject: 'http://ex.co/Human', predicate: 'http://ex.co/Is', object: 'http://ex.co/Mortal' };
+  const triple3 = { subject: 'http://ex.co/Socrates', predicate: 'http://ex.co/Is', object: 'http://ex.co/Mortal' };
+
+  const yart = new Yart()
+  yart.insert(triple1.subject, triple1.predicate, triple1.object)
+  yart.insert(triple2.subject, triple2.predicate, triple2.object)
+  yart.insert(triple3.subject, triple3.predicate, triple3.object)
+
+});
